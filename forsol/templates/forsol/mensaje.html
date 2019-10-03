@@ -1,0 +1,12 @@
+{% extends 'forsol/index.html' %}
+{% load static %}
+{% block title %}Mensaje{% endblock %} 
+{% block content %}
+<div class="contenido">
+	<div class="form-box">
+	<div id="centrado">
+	{{ msj | safe }}
+	</div>
+	</div>
+</div>
+{% endblock %} 

@@ -1,0 +1,38 @@
+{% extends 'forsol/index.html' %}
+{% load custom_tags %} 
+{% block title %}{{ titulos | escape}}{% endblock %}
+{% block content %} 
+{% load static %}
+{% if posteos %}
+	{% for post in posteos %}
+	<div class="contenido">
+	<div id="centrado"><div id="titulo">
+	{{ post.titulo }}</div></div>
+		{% if user.username %}
+		<a class="btn-editar" href="{% url 'eliminar' ID=post.id %}" onClick="return confirm('¿Seguro que quieres borrar el post {{ post.titulo }}?');"><img src="{% static 'cerrar.png' %}"/></a>
+		<a class="btn-editar" href="{% url 'editar_post' ID=post.id %}"><img src="{% static 'editar.png' %}"/></a>
+		{% endif %}
+	<div id="publica"> Publicado: {{ post.fecha_post }} en {{ post.categoria }}</div>
+	{% if post.imagen %}
+		<div class="imagen"><a href="{{ post.imagen.url }}"><img src="{{ post.imagen.url }}"/></a></div>
+	{% endif %}
+	{{ post.texto|safe }}
+	<br>
+	<p>
+		<a id="btn-share" href="http://www.facebook.com/sharer.php?u=http://forsol.org/{{ request.get_full_path }}" target="_blank">
+		<img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+		<!-- Twitter -->
+		<a id="btn-share" href="https://twitter.com/share?url=http://forsol.org/{{ request.get_full_path }}&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+		<img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+	</p>
+	</div>
+	{% endfor %}
+{% else %}
+	<div class="contenido">
+		<div id="centrado">
+		<br>
+		<p><h2>No existe Post : /</h2></p>
+		<br>
+	</div></div>
+{% endif %}
+{% endblock %}

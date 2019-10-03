@@ -1,0 +1,22 @@
+{% extends 'forsol/index.html' %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<div class="contenido">
+	<div id="centrado">
+	<div id="titulo">Deja tu mensaje!!</div>
+<div class="form_box"><br>
+<form action="" method="POST">
+	{% csrf_token %}
+	Nombre:
+    <p>{{ form.Nombre }}</p>
+    Correo:
+    <p>{{ form.Correo }}</p>
+    Mensaje:<br>
+    <p>{{ form.Mensaje }}</p>
+    <br>
+<button>ENVIAR</button>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

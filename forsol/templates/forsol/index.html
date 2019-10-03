@@ -1,0 +1,81 @@
+{% load static %}
+{% load custom_tags %} 
+<html>
+{% block header %}
+	<title>Forsol | {% block title %}{% endblock %}</title>
+	<link rel="icon" type="image/png"  href="{% static 'forsol.png' %}">
+	<link rel="stylesheet" href="{% static '/css/pagina.css' %}">
+	<!-- Place this tag in your head or just before your close body tag. -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block body %}
+	<div class="contenedor">
+		<div class="cabecera">
+			<img src="{% static 'cropped-FORSOL-.png' %}">
+		</div>
+		<div class="cuerpo">
+		<div id="navbar">
+			<a class="active" href="{% url 'home' %}">HOME</a>
+			<a href="{% url 'ver_post' %}?search=Noticias">Noticias</a>
+			<a href="{% url 'ver_post' %}?search=Eventos">Eventos</a>
+			<a href="{% url 'ver_post' %}?search=Tutoriales">Tutoriales</a>
+			<a href="{% url 'ver_post' %}?search=Proyectos">Proyectos</a>
+			<a href="{% url 'contacto' %}">Contacto</a>
+			<a href="{% url 'galeria' %}">Galeria</a>
+			{% if user.username %}
+						<a class="login" href="{% url 'salir' %}" onClick="return confirm('¿Seguro que quieres cerrar sesion?');">Salir</a>
+						<a class="login" href="{% url 'usuarios' %}">{{ user.username }}</a>
+
+			{% else %}
+						<a class="login" href="{% url 'usuarios' %}">Ingresar</a>
+			{% endif %}
+
+		</div>
+		<div class="principal">
+		{% block content %}
+
+		{% endblock %}
+		</div>
+		<div class="lateral">
+			<div id="titulo">Publicaciones</div>
+			{% if posteos %}
+				{% for post in posteos %}
+				<p><div id="link">* <a href="{% url 'ver_post' %}?search={{ post.id }}">{{ post.titulo }}</a></div></p>
+			{% endfor %}
+			{% else %}
+				<p><a href="{% url 'ver_post' %}?search=todas">Ver todas</a></p>
+			{% endif %}
+		</div>
+		<div class="lateral">
+			<div class="logos">
+			<div id="titulo">Amigos</div>
+				<a href="http://www.python.org.ar/" target="_blank"><img src="{% static 'pyar.png' %}"></a>
+				<a href="https://flisol.info/" target="_blank"><img src="{% static 'flisol.png' %}"></a>
+				<a href="http://drupal.usla.org.ar/" target="_blank"><img src="{% static 'usla.png' %}"></a>
+				<a href="http://www.solarargentina.org/" target="_blank"><img src="{% static 'solar.png' %}"></a>
+			</div>
+		</div>
+		</div>
+				<div class="btn">
+					<a href="https://www.facebook.com/groups/forsol" target="_blank"><img src="{% static 'face.png' %}"/></a>
+					<a href="https://twitter.com/FORSOL4?lang=es" target="_blank"><img src="{% static 'tweeter.png' %}"/></a>
+					<a href="https://t.me/forsol" target="_blank"><img src="{% static 'telegram.png' %}"/></a>
+				</div>
+				
+<script type="text/javascript" src="{% static '/js/navbar-stick.js' %}"></script>
+{% endblock %}
+{% block footer %}
+	<div class="pie">
+		<div class="iconos_pie">
+			<img src="{% static 'django.png' %}">
+			<img src="{% static 'html5.png' %}">
+			<img src="{% static 'raspberry-pi.png' %}">
+		</div>
+		<p>Powered</p>
+		<p>Forsol - <span class="copyleft">&copy;</span>Copyleft {% now 'Y' %}</p>
+		<a class="github-button" href="https://github.com/ntkme/github-buttons/subscription" data-icon="octicon-eye" aria-label="Watch ntkme/github-buttons on GitHub">Watch</a>
+	</div>
+{% endblock %}
+</div>
+</html>

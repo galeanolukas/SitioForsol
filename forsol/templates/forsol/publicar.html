@@ -1,0 +1,15 @@
+{% extends 'forsol/index.html' %}
+{% block title %}Postear{% endblock %}
+{% block content %}
+<div class="contenido">
+<div id="centrado">
+<div id="titulo">Nueva Publicacion</div><BR>
+<div class="form_box">
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button>PUBLICAR</button>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %} 

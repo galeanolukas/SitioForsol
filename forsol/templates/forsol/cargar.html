@@ -1,0 +1,20 @@
+{% extends 'forsol/index.html' %}
+{% block title %}Subir{% endblock %}
+{% block content %}
+<div class="contenido">
+	<div id="centrado">
+	<div id="titulo">Sube tus fotos!!</div>
+<div class="form_box"><br>
+<form action="" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	Titulo de la galeria:
+    <p>{{ form.nombre }}</p>
+    Imagen a subir:
+    <p>{{ form.archivo }}</p>
+    <br>
+<button>CARGAR</button>
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

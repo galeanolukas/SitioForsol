@@ -1,0 +1,16 @@
+{% extends 'forsol/index.html' %}
+{% block title %}Editar {{ num }}{% endblock %}
+{% block content %}
+<div class="contenido">
+<div id="centrado">
+<div id="titulo">EDITAR</div>
+<div class="form_box">
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+		{% csrf_token %}
+        {{ form.as_p }}
+		<button>GUARDAR</button>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %} 

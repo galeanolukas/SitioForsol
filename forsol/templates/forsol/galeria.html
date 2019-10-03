@@ -1,0 +1,24 @@
+{% extends 'forsol/index.html' %}
+{% load custom_tags %}
+{% load static %} 
+{% block title %}Galeria{% endblock %}
+{% block content %}
+{% for titulo in titulos %}
+	<div id="centrado">{{ titulo.nombre }}</div>
+	<div class="contenido">
+	{% for foto in fotos %}
+		{% if foto.nombre == titulo.nombre %}
+	 <div class="responsive">
+		 <div class="galeria">
+			<a target="_blank" href="{{ foto.archivo.url }}">
+			<img src="{{ foto.archivo.url }}" alt="" width="600" height="400">
+			</a>
+			<div class="desc">{{ foto.nombre }}</div>
+		 </div>
+	 </div>
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endfor %}
+
+{% endblock %} 

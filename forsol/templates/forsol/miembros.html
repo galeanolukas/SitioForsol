@@ -1,0 +1,14 @@
+{% extends 'forsol/index.html' %}
+{% block title %}Usuarios{% endblock %}
+{% block content %}
+<div class="contenido">
+<div id="centrado"><div id="titulo">Hola Forsolero!!</div>
+<div class="form_box">
+<a href="{% url 'postear' %}"><button>CREAR NUEVO POST</button></a><BR><BR>
+<a href="{% url 'cargar' %}"><button>SUBIR IMAGEN A GALERIA</button></a><BR><BR>
+<a href="{% url 'registrar' %}"><button>ADERIR MIEMBRO</button></a><BR><BR>
+</div>
+</div>
+</div>
+
+{% endblock %}

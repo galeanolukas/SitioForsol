@@ -1,0 +1,49 @@
+{% load static %}
+</html>
+{% block header %}
+<title>{% block title %}Login{% endblock %}</title>
+<link rel="icon" type="image/png"  href="{% static 'forsol.png' %}">
+<link rel="stylesheet" href="{% static '/css/pagina.css' %}">
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% endblock %}
+{% block body %}
+<div class="contenedor-login">
+	<div class="form_box">
+		<div id="centrado">
+		<img src="{% static 'forsol.png' %}"><br>
+		{% if form.errors %}
+        <p>Su usuario o clave no coinciden!</p>
+		{% endif %}
+		<BR>
+		<form method="post" action="{% url 'login' %}">
+		{% csrf_token %}
+        <p>Usuario:</p> 
+        {{ form.username }}
+        <BR>
+        <p>Contraseña:</p>
+        {{ form.password }}
+        <BR><BR><BR>
+        <button>Ingresar</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+		</form>
+		</div>
+		<br>
+	</div>
+{% endblock %}
+{% block footer %}
+<div class="pie">
+		<div class="iconos_pie">
+			<img src="{% static 'django.png' %}">
+			<img src="{% static 'html5.png' %}">
+			<img src="{% static 'raspberry-pi.png' %}">
+		</div>
+		<p>Powered</p>
+		<p>Copileft 2019</p>
+		<a class="github-button" href="https://github.com/ntkme/github-buttons/subscription" data-icon="octicon-eye" aria-label="Watch ntkme/github-buttons on GitHub">Watch</a>
+	</div>
+</div>
+</div>
+
+{% endblock %}
+</html>
